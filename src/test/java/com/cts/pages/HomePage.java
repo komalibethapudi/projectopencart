@@ -97,7 +97,7 @@ public class HomePage {
 	}
 	
 	
-	//checking the wishlist
+	//checking the wishlisttt
 	public void CheckInWishList()
 	{
 		driver.findElement(By.xpath("(//span[@class='hidden-xs hidden-sm hidden-md'])[4]")).click();
