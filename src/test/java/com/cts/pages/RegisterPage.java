@@ -33,7 +33,7 @@ public class RegisterPage {
 		this.driver=driver;
 	}
 	
-	//enter firstname
+	//enter firstname details
 	public void enterfirstname(String firstname) {
 		driver.findElement(firstnameLocator).sendKeys(firstname);
 	}
