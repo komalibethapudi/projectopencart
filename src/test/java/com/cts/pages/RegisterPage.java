@@ -38,7 +38,7 @@ public class RegisterPage {
 		driver.findElement(firstnameLocator).sendKeys(firstname);
 	}
 
-	//enter lastname details name
+	//enter lastname details
 	public void enterlastname(String lastname) {
 		driver.findElement(LastNameLocator).sendKeys(lastname);
 	}
