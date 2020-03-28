@@ -16,7 +16,7 @@ public LoginPage(WebDriver driver)
 	this.driver=driver;
 }
 
-//enter email and go to password
+//enter email 
 	public void enterEmail(String email)
 	{
 	driver.findElement(emailLocator).sendKeys(email);
