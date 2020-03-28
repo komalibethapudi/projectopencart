@@ -6,14 +6,10 @@ Feature: OpenCartApplication
   Background: these are the steps common for every scenario to be followed
   Given I have browser with opencartpage 
   
-  Scenario Outline: ValidRegisterCredential
-  When I enter '<firstname>' and '<lastname>' and '<email>' and '<telephone>' and enter '<address>' and '<city>' and '<postcode>' and '<country>' and '<region>' and enter '<password>' and '<passwordconfirm>'
+  Scenario: ValidRegisterCredential
+  When User register details from Excel "src/test/resources/excel/Book1.xlsx" with SheetName "Sheet2"   
   Then my account has created
     
-  Examples:
-  |firstname|lastname|email|telephone|address|city|postcode|country|region|password|passwordconfirm|
-  |lill|chintabathina|liilly222333@gmail.com|7232548101|sidharthanagar|podalada|530244|India|Andhra Pradesh|komali1234|komali1234|
-  
   Scenario Outline: InValidRegisterCredential
   When user enter '<firstname>' and '<lastname>' and '<email>' and '<telephone>' and '<address>' and '<city>' and '<postcode>' and '<country>' and '<region>' and '<password>' and '<passwordconfirm>'
   Then I get Invalid credentials 
@@ -27,21 +23,18 @@ Feature: OpenCartApplication
    When I click on the product Software
    Then I should get the text
    
-    Scenario Outline: ClickOnWishList
-   When I enter '<username>' and '<password>' and click on WishList
+    Scenario: ClickOnWishList
+    When User enter search details from Excel "src/test/resources/excel/Book1.xlsx" with SheetName "Sheet1"   
    Then I should get My WishList
-   
-   Examples:
-   |username|password|
-   |anjanipriya123@gmail.com|anju.555|
-   
+ 
    Scenario Outline: ClickOnLogout
    When I enter '<username>' and '<password>' and click on logout
    Then I should logout from the page
    
    Examples:
    |username|password|
-   |anjanipriya123@gmail.com|anju.555|
+   |liilly022333@gmail.com|komali1234|
+   |komalikomali@gmail.com|komali123|
    
    
    

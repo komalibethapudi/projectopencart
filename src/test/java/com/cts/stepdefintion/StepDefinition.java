@@ -1,6 +1,8 @@
 package com.cts.stepdefintion;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +18,9 @@ import com.cts.pages.DashBoardPage;
 import com.cts.pages.HomePage;
 import com.cts.pages.LoginPage;
 import com.cts.pages.RegisterPage;
+import com.cts.utils.ExcelUtils;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,6 +28,21 @@ import io.cucumber.java.en.When;
 public class StepDefinition {
 
 	WebDriver driver;
+	
+
+	@After
+	public void end() {
+
+		// Take screen shot with date
+		Date date = new Date();
+		String dateStr = date.toString().replace(":", "-");
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File file = ts.getScreenshotAs(OutputType.FILE);
+		file.renameTo(new File("src/test/resources/screenshots/image" + dateStr + ".png"));
+
+		// quit the driver
+		driver.quit();
+	}
 
 	//launching web browser
 	@Given("I have browser with opencartpage")
@@ -40,10 +59,12 @@ public class StepDefinition {
 
 	}
 
-	@When("I enter {string} and {string} and {string} and {string} and enter {string} and {string} and {string} and {string} and {string} and enter {string} and {string}")
-	public void i_enter_and_and_and_and_enter_and_and_and_and_and_enter_and(String firstname, String lastname,
-			String email, String telephone, String address, String city, String postcode, String countryname,
-			String Regionname, String password, String cnfrmpwd) {
+	//Register Page
+	@When("User register details from Excel {string} with SheetName {string}")
+	public void user_register_details_from_Excel_with_SheetName(String fileDetails, String sheetName) throws IOException {
+
+		ExcelUtils readExcel = new ExcelUtils();
+		String str[][] = readExcel.getSheetIntoStringArray(fileDetails, sheetName);
 
 		HomePage homepage = new HomePage(driver);
 
@@ -56,29 +77,29 @@ public class StepDefinition {
 		RegisterPage registerpage = new RegisterPage(driver);
 		
 		//enter mandatory details
-		registerpage.enterfirstname(firstname);
+		registerpage.enterfirstname(str[0][0]);
 
-		registerpage.enterlastname(lastname);
+		registerpage.enterlastname(str[0][1]);
 
-		registerpage.enteremail(email);
+		registerpage.enteremail(str[0][2]);
 
-		registerpage.entertelephone(telephone);
+		registerpage.entertelephone(str[0][3]);
 
-		registerpage.enteraddress(address);
+		registerpage.enteraddress(str[0][4]);
 
-		registerpage.entercity(city);
+		registerpage.entercity(str[0][5]);
 
-		registerpage.postcode(postcode);
+		registerpage.postcode(str[0][6]);
 
-		registerpage.country(countryname);
+		registerpage.country(str[0][7]);
 
 		registerpage.explicitWaiting();
 
-		registerpage.Region(Regionname);
+		registerpage.Region(str[0][8]);
 
-		registerpage.password(password);
+		registerpage.password(str[0][9]);
 
-		registerpage.confirmpassword(cnfrmpwd);
+		registerpage.confirmpassword(str[0][10]);
 
 		registerpage.checkbox();
 
@@ -93,9 +114,9 @@ public class StepDefinition {
 		String actualTitle = homepage.getRegisterTitle();
 		Assert.assertEquals("Your Account Has Been Created!", actualTitle);
 		System.out.println(actualTitle);
-		driver.quit();
 	}
 
+	//Invalid register Page
 	@When("user enter {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string} and {string}")
 	public void user_enter_and_and_and_and_and_and_and_and_and_and(String firstname, String lastname, String email,
 			String telephone, String address, String city, String postcode, String countryname, String Regionname,
@@ -146,10 +167,11 @@ RegisterPage registerpage = new RegisterPage(driver);
 		String actualTitle = homepage.getInvalidRegisterTitle();
 		Assert.assertEquals("Warning: E-Mail Address is already registered!", actualTitle);
 		System.out.println(actualTitle);
-		driver.quit();
+		
 
 	}
 
+	//Click On software
 	@When("I click on the product Software")
 	public void i_click_on_the_product_Software() {
 
@@ -164,9 +186,9 @@ RegisterPage registerpage = new RegisterPage(driver);
 		String actualTitle = homepage.getSoftwareTitle();
 		Assert.assertEquals("There are no products to list in this category.", actualTitle);
 		System.out.println(actualTitle);
-		driver.quit();
 	}
 
+	//Click on MP3 Player
 	@When("I click on the product MP3 Players")
 	public void i_click_on_the_product_MP3_Players() {
 
@@ -186,11 +208,15 @@ RegisterPage registerpage = new RegisterPage(driver);
 		String actualTitle = homepage.getAllMP3Title();
 		Assert.assertEquals("MP3 Players", actualTitle);
 		System.out.println(actualTitle);
-		driver.quit();
 	}
 
-	@When("I enter {string} and {string} and click on WishList")
-	public void i_enter_and_and_click_on_WishList(String username, String password) {
+//	Click on WishList
+	@When("User enter search details from Excel {string} with SheetName {string}")
+	public void user_enter_search_details_from_Excel_with_SheetName(String fileDetails, String sheetName)
+			throws IOException {
+
+		ExcelUtils readExcel = new ExcelUtils();
+		String str[][] = readExcel.getSheetIntoStringArray(fileDetails, sheetName);
 
 		HomePage homepage = new HomePage(driver);
 
@@ -200,9 +226,9 @@ RegisterPage registerpage = new RegisterPage(driver);
 		
 		LoginPage loginpage=new LoginPage(driver);
 
-		loginpage.enteremail(username);
+		loginpage.enteremail(str[0][0]);
 
-		loginpage.enterpassword(password);
+		loginpage.enterpassword(str[0][1]);
 
 		loginpage.clickOnLogin();
 
@@ -222,9 +248,9 @@ RegisterPage registerpage = new RegisterPage(driver);
 		String actualTitle = homepage.getWishListTitle();
 		Assert.assertEquals("My Wish List", actualTitle);
 		System.out.println(actualTitle);
-		driver.quit();
 	}
 
+	//Logout click
 	@When("I enter {string} and {string} and click on logout")
 	public void i_enter_and_and_click_on_logout(String username, String password) {
 
@@ -251,6 +277,6 @@ RegisterPage registerpage = new RegisterPage(driver);
 	@Then("I should logout from the page")
 	public void i_should_logout_from_the_page() {
 
-		driver.quit();
+		System.out.println("Logged Out");
 	}
 }

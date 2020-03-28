@@ -20,3 +20,7 @@ public class DashBoardPage {
 		driver.findElement(logoutLocator).click();
 	}
 }
+
+
+
+
