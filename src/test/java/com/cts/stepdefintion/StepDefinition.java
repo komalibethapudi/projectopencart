@@ -77,19 +77,19 @@ public class StepDefinition {
 		RegisterPage registerpage = new RegisterPage(driver);
 		
 		//enter mandatory details
-		registerpage.enterfirstname(str[0][0]);
+		registerpage.enterFirstName(str[0][0]);
 
-		registerpage.enterlastname(str[0][1]);
+		registerpage.enterLastName(str[0][1]);
 
-		registerpage.enteremail(str[0][2]);
+		registerpage.enterEmail(str[0][2]);
 
-		registerpage.entertelephone(str[0][3]);
+		registerpage.enterTelephone(str[0][3]);
 
-		registerpage.enteraddress(str[0][4]);
+		registerpage.enterAddress(str[0][4]);
 
-		registerpage.entercity(str[0][5]);
+		registerpage.enterCity(str[0][5]);
 
-		registerpage.postcode(str[0][6]);
+		registerpage.postCode(str[0][6]);
 
 		registerpage.country(str[0][7]);
 
@@ -99,7 +99,7 @@ public class StepDefinition {
 
 		registerpage.password(str[0][9]);
 
-		registerpage.confirmpassword(str[0][10]);
+		registerpage.confirmPassword(str[0][10]);
 
 		registerpage.checkbox();
 
@@ -130,19 +130,19 @@ public class StepDefinition {
 
 RegisterPage registerpage = new RegisterPage(driver);
 		
-		registerpage.enterfirstname(firstname);
+		registerpage.enterFirstName(firstname);
 
-		registerpage.enterlastname(lastname);
+		registerpage.enterLastName(lastname);
 
-		registerpage.enteremail(email);
+		registerpage.enterEmail(email);
 
-		registerpage.entertelephone(telephone);
+		registerpage.enterTelephone(telephone);
 
-		registerpage.enteraddress(address);
+		registerpage.enterAddress(address);
 
-		registerpage.entercity(city);
+		registerpage.enterCity(city);
 
-		registerpage.postcode(postcode);
+		registerpage.postCode(postcode);
 
 		registerpage.country(countryname);
 
@@ -152,7 +152,7 @@ RegisterPage registerpage = new RegisterPage(driver);
 
 		registerpage.password(password);
 
-		registerpage.confirmpassword(cnfrmpwd);
+		registerpage.confirmPassword(cnfrmpwd);
 
 		registerpage.checkbox();
 
@@ -226,9 +226,9 @@ RegisterPage registerpage = new RegisterPage(driver);
 		
 		LoginPage loginpage=new LoginPage(driver);
 
-		loginpage.enteremail(str[0][0]);
+		loginpage.enterEmail(str[0][0]);
 
-		loginpage.enterpassword(str[0][1]);
+		loginpage.enterPassword(str[0][1]);
 
 		loginpage.clickOnLogin();
 
@@ -262,9 +262,9 @@ RegisterPage registerpage = new RegisterPage(driver);
 
 		LoginPage loginpage=new LoginPage(driver);
 		
-		loginpage.enteremail(username);
+		loginpage.enterEmail(username);
 
-		loginpage.enterpassword(password);
+		loginpage.enterPassword(password);
 
 		loginpage.clickOnLogin();
 

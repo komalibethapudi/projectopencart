@@ -34,37 +34,37 @@ public class RegisterPage {
 	}
 	
 	//enter firstname details
-	public void enterfirstname(String firstname) {
+	public void enterFirstName(String firstname) {
 		driver.findElement(firstnameLocator).sendKeys(firstname);
 	}
 
 	//enter lastname details
-	public void enterlastname(String lastname) {
+	public void enterLastName(String lastname) {
 		driver.findElement(LastNameLocator).sendKeys(lastname);
 	}
 
 	//enter email
-	public void enteremail(String email) {
+	public void enterEmail(String email) {
 		driver.findElement(emailLocator).sendKeys(email);
 	}
 
 	//enter telephone number
-	public void entertelephone(String telephone) {
+	public void enterTelephone(String telephone) {
 		driver.findElement(telephoneLocator).sendKeys(telephone);
 	}
 
 	//enter address
-	public void enteraddress(String address) {
+	public void enterAddress(String address) {
 		driver.findElement(addressLocator).sendKeys(address);
 	}
 
 	//enter city name
-	public void entercity(String city) {
+	public void enterCity(String city) {
 		driver.findElement(cityLocator).sendKeys(city);
 	}
 
 	//enter postcode
-	public void postcode(String postcode) {
+	public void postCode(String postcode) {
 		driver.findElement(postcodeLocator).sendKeys(postcode);
 	}
 
@@ -104,7 +104,7 @@ public class RegisterPage {
 	}
 
 	//confirm password
-	public void confirmpassword(String cnfrmpwd) {
+	public void confirmPassword(String cnfrmpwd) {
 		driver.findElement(confirmpasswordLocator).sendKeys(cnfrmpwd);
 	}
 

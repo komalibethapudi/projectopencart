@@ -17,13 +17,13 @@ public LoginPage(WebDriver driver)
 }
 
 //enter email and go to password
-	public void enteremail(String email)
+	public void enterEmail(String email)
 	{
 	driver.findElement(emailLocator).sendKeys(email);
 	}
 
 	//enter password
-	public void enterpassword(String password)
+	public void enterPassword(String password)
 	{
 	driver.findElement(passwordLocator).sendKeys(password);
 	}
